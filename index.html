@@ -1,0 +1,70 @@
+<!DOCTYPE >
+<html html ng-app="clientes">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="angular.js"></script>
+    <script>
+        angular.module("clientes", []);
+        angular.module("clientes").controller("clientesCtrl", function($scope){
+            $scope.app = "Clientes";
+            $scope.clientes = [
+                {nome: "Martins", telefone: "23456789", cpf: "2341234"},
+                {nome: "Joana", telefone: "12345678", cpf: "086283618"},
+                {nome: "Luana", telefone: "9876362", cpf: "09i321789"},
+                {nome: "Maria", telefone: "987261", cpf: "o1823989"},
+                {nome: "João", telefone: "7723668", cpf: "12389881279"}
+            ];
+            $scope.adicionarCliente = function(cliente){
+                $scope.clientes.push(cliente);
+                delete $scope.cliente;
+            };
+        });
+
+    </script>
+
+    <style>
+        .title{
+            text-align: center;
+            margin-bottom: 30px;}
+        .jumbotron{
+            text-align: center;
+            background-color:#819FF7;
+            margin-bottom: 20px;
+        }
+        .form-control{
+            margin-bottom: 8px;
+        }
+    </style>
+
+</head>
+<body ng-controller="clientesCtrl">
+ <div class="jumbotron">
+     <h2 class="title">{{app}}</h2>
+     <table class="table table-striped">
+         <tr>
+             <th style="border:none;">Nome: </th>
+             <th style="border:none;">Telefone: </th>
+             <th style="border:none;">CPF: </th>
+         </tr>
+         <tr ng-repeat="cliente in clientes">
+             <td style="border:none;">{{cliente.nome}}</td>
+             <td style="border:none;">{{cliente.telefone}}</td>
+             <td style="border:none;">{{cliente.cpf}}</td>
+         </tr>
+     </table>
+     <hr style="background-color:#cccc;">
+     <h2>Adicione novos Clientes</h2>
+     <input class="form-control" type="text" placeholder="Nome" ng-model="cliente.nome" />
+     <input class="form-control" type="text" placeholder="Telefone" ng-model="cliente.telefone" />
+     <input class="form-control" type="text"placeholder="CPF" ng-model="cliente.cpf" />
+     <button class="btn btn-primary" ng-click="adicionarCliente(cliente)" ng-disabled="!cliente.nome || !cliente.telefone || !cliente.cpf">Salvar</button>
+ </div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
